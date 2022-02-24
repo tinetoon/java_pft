@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.TestBase;
 
 /**
  * Класс для тестирования удаления групп в БД addressbook
@@ -18,18 +18,9 @@ public class GroupDeletionTest extends TestBase {
         String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
         String deleteButtonXpath = "//*[@name=\"delete\"][1]";
 
-        goToPage(groupPageXpath);
-        selectGroup(checkBoxXpath);
-        deleteSelectedGroup(deleteButtonXpath);
+        app.getNavigationHelper().goToPage(groupPageXpath);
+        app.getGroupHelper().selectGroup(checkBoxXpath);
+        app.getGroupHelper().deleteSelectedGroup(deleteButtonXpath);
     }
 
-    // Метод выделения группы
-    private void selectGroup(String s) {
-        getDriver().findElement(By.xpath(s)).click();
-    }
-
-    // Метод удаления выделенной группы
-    private void deleteSelectedGroup(String s) {
-        getDriver().findElement(By.xpath(s)).click();
-    }
 }

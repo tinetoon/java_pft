@@ -1,8 +1,8 @@
 package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.TestBase;
 import ru.stqa.pft.addressbook.testData.GroupData;
-import ru.stqa.pft.addressbook.testData.NewNoteData;
 
 /**
  * Класс для тестирования создания групп в БД addressbook
@@ -24,10 +24,10 @@ public class GroupCreationTest extends TestBase {
         String buttonNameXpath = "submit";
         GroupData groupData = new GroupData("TestGroup", "Test group header", "Test group footer");
 
-        goToPage(groupPageXpath);
-        initGroupCreation(creationGroupName);
-        fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, buttonNameXpath, groupData);
-        goToPage(returnGroupPageXpath);
+        app.getNavigationHelper().goToPage(groupPageXpath);
+        app.getGroupHelper().initGroupCreation(creationGroupName);
+        app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, buttonNameXpath, groupData);
+        app.getNavigationHelper().goToPage(returnGroupPageXpath);
     }
 
 }

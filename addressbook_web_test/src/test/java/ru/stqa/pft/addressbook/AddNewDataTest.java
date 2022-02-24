@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.testData.GroupData;
+import ru.stqa.pft.addressbook.model.TestBase;
 import ru.stqa.pft.addressbook.testData.NewNoteData;
 
 /**
@@ -26,9 +26,9 @@ public class AddNewDataTest extends TestBase {
 
         NewNoteData newNoteData = new NewNoteData(firstName, lastName, address, email, mobileFone);
 
-        goToPage(addNewPageXpath);
-        fillAddNewNoteForm(newNoteData);
-        saveData(buttonXpath);
+        app.getNavigationHelper().goToPage(addNewPageXpath);
+        app.fillAddNewNoteForm(newNoteData);
+        app.saveData(buttonXpath);
     }
 
 }
