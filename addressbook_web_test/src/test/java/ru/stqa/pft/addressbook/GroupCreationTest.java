@@ -26,7 +26,8 @@ public class GroupCreationTest extends TestBase {
 
         app.getNavigationHelper().goToPage(groupPageXpath);
         app.getGroupHelper().initGroupCreation(creationGroupName);
-        app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, buttonNameXpath, groupData);
+        app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, groupData);
+        app.getGroupHelper().createNewGroup(buttonNameXpath);
         app.getNavigationHelper().goToPage(returnGroupPageXpath);
     }
 

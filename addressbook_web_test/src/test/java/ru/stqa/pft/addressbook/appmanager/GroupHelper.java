@@ -17,11 +17,10 @@ public class GroupHelper extends HelperBase {
     }
 
     // Метод заполнения полей новой группы
-    public void fillGroupForm(String nameName, String headerName, String footerName, String buttonName, GroupData groupData) {
+    public void fillGroupForm(String nameName, String headerName, String footerName, GroupData groupData) {
         type(By.name(nameName), groupData.getNameGroup());
         type(By.name(headerName), groupData.getHeaderGroup());
         type(By.name(footerName), groupData.getFooterGroup());
-        click(By.name(buttonName));
     }
 
     // Метод создания новой группы
@@ -37,5 +36,17 @@ public class GroupHelper extends HelperBase {
     // Метод удаления выделенной группы
     public void deleteSelectedGroup(String s) {
         wd.findElement(By.xpath(s)).click();
+    }
+
+    public void createNewGroup(String createButtonName) {
+        click(By.name(createButtonName));
+    }
+
+    public void initGroupEdit(String initButtonName) {
+        click(By.name(initButtonName));
+    }
+
+    public void submitGroupEdit(String editButtonName) {
+        click(By.name(editButtonName));
     }
 }
