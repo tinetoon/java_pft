@@ -31,10 +31,8 @@ public class GroupCreationTest {
     new WebDriverWait(driver, Duration.ofSeconds(60));
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
-  }
 
-  @Test
-  public void untitled() {
+    // Авторизация в БД
     driver.get("http://localhost/addressbook/");
     driver.manage().window().setSize(new Dimension(1936, 1056));
     driver.findElement(By.name("user")).click();
@@ -42,11 +40,14 @@ public class GroupCreationTest {
     driver.findElement(By.name("pass")).click();
     driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
+  }
+
+  @Test
+  public void groupCreationTest() {
     driver.findElement(By.xpath("//div[@id=\"nav\"]//a[.='groups']")).click();
     driver.findElement(By.name("new")).click();
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).sendKeys("TestGroup");
-    driver.findElement(By.name("group_header")).click();
     driver.findElement(By.name("group_header")).click();
     driver.findElement(By.name("group_header")).sendKeys("Test group header");
     driver.findElement(By.name("group_footer")).click();
