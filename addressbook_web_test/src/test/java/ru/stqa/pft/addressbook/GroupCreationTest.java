@@ -41,8 +41,8 @@ public class GroupCreationTest {
     driver.findElement(By.name("user")).sendKeys("admin");
     driver.findElement(By.name("pass")).click();
     driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.cssSelector("input:nth-child(1)")).click(); // (!!! разобраться с кодом)
-    driver.findElement(By.cssSelector(".admin font > font")).click();
+    driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
+    driver.findElement(By.xpath("//div[@id=\"nav\"]//a[.='groups']")).click();
     driver.findElement(By.name("new")).click();
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).sendKeys("TestGroup");
@@ -52,7 +52,7 @@ public class GroupCreationTest {
     driver.findElement(By.name("group_footer")).click();
     driver.findElement(By.name("group_footer")).sendKeys("Test group footer");
     driver.findElement(By.name("submit")).click();
-    driver.findElement(By.cssSelector("i > a > font > font")).click();
+    driver.findElement(By.xpath("//a[.='group page']")).click();
   }
 
   @AfterMethod
