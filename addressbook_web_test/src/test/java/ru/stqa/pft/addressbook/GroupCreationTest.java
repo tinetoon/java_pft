@@ -12,52 +12,90 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.testData.GroupData;
 
 import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
+
+/**
+ * Класс для тестирования создания групп в БД addressbook
+ * Ответственный за создание класса - А.А. Дюжаков
+ * Дата создания - 24.02.2022
+ */
 
 public class GroupCreationTest {
 
-  private WebDriver driver;
-  private Map<String, Object> vars;
-  JavascriptExecutor js;
+    private WebDriver driver;
+    private Map<String, Object> vars;
+    JavascriptExecutor js;
 
-  @BeforeMethod
-  public void setUp() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
+    @BeforeMethod
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
 //    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // is deprecated
-    new WebDriverWait(driver, Duration.ofSeconds(60));
-    js = (JavascriptExecutor) driver;
-    vars = new HashMap<String, Object>();
+        new WebDriverWait(driver, Duration.ofSeconds(60));
+        js = (JavascriptExecutor) driver;
+        vars = new HashMap<String, Object>();
 
-    // Авторизация в БД
-    driver.get("http://localhost/addressbook/");
-    driver.manage().window().setSize(new Dimension(1936, 1056));
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).click();
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.xpath("//input[@type=\"submit\"]")).click();
-  }
+        driver.get("http://localhost/addressbook/");
+        authorization("admin", "secret");
+    }
 
-  @Test
-  public void groupCreationTest() {
-    driver.findElement(By.xpath("//div[@id=\"nav\"]//a[.='groups']")).click();
-    driver.findElement(By.name("new")).click();
-    driver.findElement(By.name("group_name")).click();
-    driver.findElement(By.name("group_name")).sendKeys("TestGroup");
-    driver.findElement(By.name("group_header")).click();
-    driver.findElement(By.name("group_header")).sendKeys("Test group header");
-    driver.findElement(By.name("group_footer")).click();
-    driver.findElement(By.name("group_footer")).sendKeys("Test group footer");
-    driver.findElement(By.name("submit")).click();
-    driver.findElement(By.xpath("//a[.='group page']")).click();
-  }
+    @Test
+    public void groupCreationTest() {
 
-  @AfterMethod
-  public void tearDown() {
-    driver.quit();
-  }
+        String groupPageXpath = "//div[@id=\"nav\"]//a[.='groups']";
+        String returnGroupPageXpath = "//a[.='group page']";
+        String creationGroupName = "new";
+        String nameGroupXpath = "group_name";
+        String headerGroupXpath = "group_header";
+        String footerGroupXpath = "group_footer";
+        String buttonNameXpath = "submit";
+        GroupData groupData = new GroupData("TestGroup", "Test group header", "Test group footer");
+
+        goToPage(groupPageXpath);
+        initGroupCreation(creationGroupName);
+        fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, buttonNameXpath, groupData);
+        goToPage(returnGroupPageXpath);
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
+
+    // Метод авторизации в БД
+    private void authorization(String userName, String password) {
+
+        String mainPageXpath = "//input[@type=\"submit\"]";
+
+        driver.manage().window().setSize(new Dimension(1936, 1056));
+        driver.findElement(By.name("user")).click();
+        driver.findElement(By.name("user")).sendKeys(userName);
+        driver.findElement(By.name("pass")).click();
+        driver.findElement(By.name("pass")).sendKeys(password);
+        goToPage(mainPageXpath);
+    }
+
+    // Метод создания новой группы
+    private void initGroupCreation(String s) {
+        driver.findElement(By.name(s)).click();
+    }
+
+    // Метод заполнения полей новой группы
+    private void fillGroupForm(String name, String header, String footer, String button, GroupData groupData) {
+        driver.findElement(By.name(name)).click();
+        driver.findElement(By.name(name)).sendKeys(groupData.getNameGroup());
+        driver.findElement(By.name(header)).click();
+        driver.findElement(By.name(header)).sendKeys(groupData.getHeaderGroup());
+        driver.findElement(By.name(footer)).click();
+        driver.findElement(By.name(footer)).sendKeys(groupData.getFooterGroup());
+        driver.findElement(By.name(button)).click();
+    }
+
+    // Метод перехода на страницу
+    private void goToPage(String s) {
+        driver.findElement(By.xpath(s)).click();
+    }
 }
