@@ -30,4 +30,19 @@ public class ContactHelper extends HelperBase {
     public void createNewData(String createButtonXpath) {
         click(By.xpath(createButtonXpath));
     }
+
+    public void selectData(String checkBoxXpath) {
+        click(By.xpath(checkBoxXpath));
+    }
+
+    public void deleteSelectedData(String deleteButtonXpath) {
+        click(By.xpath(deleteButtonXpath));
+    }
+
+    public void confirmDeletion() {
+
+        if (isAlertPresent()) {
+            alertOk();
+        }
+    }
 }

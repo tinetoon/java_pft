@@ -29,13 +29,13 @@ public class GroupHelper extends HelperBase {
     }
 
     // Метод выделения группы
-    public void selectGroup(String s) {
-        wd.findElement(By.xpath(s)).click();
+    public void selectGroup(String checkBoxXpath) {
+        click(By.xpath(checkBoxXpath));
     }
 
     // Метод удаления выделенной группы
-    public void deleteSelectedGroup(String s) {
-        wd.findElement(By.xpath(s)).click();
+    public void deleteSelectedGroup(String deleteButtonXpath) {
+        click(By.xpath(deleteButtonXpath));
     }
 
     public void createNewGroup(String createButtonName) {

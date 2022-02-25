@@ -21,11 +21,16 @@ public class HelperBase {
         wd.findElement(locator).click();
     }
 
-    // Метод заполняющий текстовое поле ввода
+    // Метод, заполняющий текстовое поле ввода
     protected void type(By locator, String text) {
         wd.findElement(locator).click();
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
+    }
+
+    // Метод, подтверждающий действие на алерте
+    protected void alertOk() {
+        wd.switchTo().alert().accept();
     }
 
     public boolean isAlertPresent() {

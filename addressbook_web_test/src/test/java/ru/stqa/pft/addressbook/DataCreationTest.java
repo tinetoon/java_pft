@@ -10,10 +10,10 @@ import ru.stqa.pft.addressbook.testData.NewNoteData;
  * Дата создания - 24.02.2022
  */
 
-public class AddNewDataTest extends TestBase {
+public class DataCreationTest extends TestBase {
 
     @Test
-    public void addNewTest() {
+    public void testDataCreation() {
 
         // Тестовые данные
         String addNewPageXpath = "//a[.='add new']";
