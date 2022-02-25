@@ -27,8 +27,8 @@ public class AddNewDataTest extends TestBase {
         NewNoteData newNoteData = new NewNoteData(firstName, lastName, address, email, mobileFone);
 
         app.getNavigationHelper().goToPage(addNewPageXpath);
-        app.fillAddNewNoteForm(newNoteData);
-        app.saveData(buttonXpath);
+        app.getContactHelper().fillAddNewNoteForm(newNoteData);
+        app.getContactHelper().createNewData(buttonXpath);
     }
 
 }
