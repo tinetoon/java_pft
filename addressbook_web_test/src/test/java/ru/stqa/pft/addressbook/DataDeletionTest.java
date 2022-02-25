@@ -19,7 +19,7 @@ public class DataDeletionTest extends TestBase {
         String checkBoxXpath = "//input[@title=\"Select (Boris Ivanov)\"]";
         String deleteButtonXpath = "//input[@value=\"Delete\"]";
 
-        app.getNavigationHelper().goToPage(homePageXpath);
+        app.getNavigationHelper().goToHomePage(homePageXpath);
         app.getContactHelper().selectData(checkBoxXpath);
         app.getContactHelper().deleteSelectedData(deleteButtonXpath);
         app.getContactHelper().confirmDeletion();

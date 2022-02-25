@@ -30,7 +30,7 @@ public class GroupEditTest extends TestBase {
                                             "Test group header",
                                             "Test group footer");
 
-        app.getNavigationHelper().goToPage(groupPageXpath);
+        app.getNavigationHelper().goToGroupPage(groupPageXpath);
         app.getGroupHelper().selectGroup(checkBoxXpath);
         app.getGroupHelper().initGroupEdit(editButtonName);
         app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, groupData);

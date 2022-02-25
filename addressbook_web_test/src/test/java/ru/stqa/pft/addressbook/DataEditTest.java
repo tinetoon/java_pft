@@ -27,7 +27,7 @@ public class DataEditTest extends TestBase {
 
         ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
 
-        app.getNavigationHelper().goToPage(homePageXpath);
+        app.getNavigationHelper().goToHomePage(homePageXpath);
         app.getContactHelper().initDatEdit(editButtonXpath);
         app.getContactHelper().fillContactForm(contactData, false);
         app.getContactHelper().submitDataEdit(editButtonOkXpath);

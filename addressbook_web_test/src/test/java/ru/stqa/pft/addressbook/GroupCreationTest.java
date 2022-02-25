@@ -24,7 +24,7 @@ public class GroupCreationTest extends TestBase {
         String buttonNameXpath = "submit";
         GroupData groupData = new GroupData("TestGroup", "Test group header", "Test group footer");
 
-        app.getNavigationHelper().goToPage(groupPageXpath);
+        app.getNavigationHelper().goToGroupPage(groupPageXpath);
         app.getGroupHelper().initGroupCreation(creationGroupName);
         app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, groupData);
         app.getGroupHelper().createNewGroup(buttonNameXpath);

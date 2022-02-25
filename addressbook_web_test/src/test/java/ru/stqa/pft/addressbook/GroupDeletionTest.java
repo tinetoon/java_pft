@@ -18,7 +18,7 @@ public class GroupDeletionTest extends TestBase {
         String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
         String deleteButtonXpath = "//*[@name=\"delete\"][1]";
 
-        app.getNavigationHelper().goToPage(groupPageXpath);
+        app.getNavigationHelper().goToGroupPage(groupPageXpath);
         app.getGroupHelper().selectGroup(checkBoxXpath);
         app.getGroupHelper().deleteSelectedGroup(deleteButtonXpath);
     }

@@ -26,7 +26,7 @@ public class DataCreationTest extends TestBase {
 
         ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
 
-        app.getNavigationHelper().goToPage(addNewPageXpath);
+        app.getNavigationHelper().goToHomePage(addNewPageXpath);
         app.getContactHelper().fillAddNewNoteForm(contactData);
         app.getContactHelper().createNewData(buttonXpath);
     }
@@ -43,7 +43,7 @@ public class DataCreationTest extends TestBase {
 
         ContactData contactData = new ContactData(firstName, lastName, group);
 
-        app.getNavigationHelper().goToPage(addNewPageXpath);
+        app.getNavigationHelper().goToHomePage(addNewPageXpath);
         app.getContactHelper().fillContactForm(contactData, true);
         app.getContactHelper().createNewData(buttonXpath);
     }
