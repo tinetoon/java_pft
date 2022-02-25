@@ -2,7 +2,7 @@ package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.TestBase;
-import ru.stqa.pft.addressbook.testData.NewNoteData;
+import ru.stqa.pft.addressbook.testData.ContactData;
 
 /**
  * Класс для тестирования редактирования записи в БД addressbook
@@ -25,11 +25,11 @@ public class DataEditTest extends TestBase {
         String email = "edit@mail.ts";
         String mobileFone = "+70001231212";
 
-        NewNoteData newNoteData = new NewNoteData(firstName, lastName, address, email, mobileFone);
+        ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
 
         app.getNavigationHelper().goToPage(homePageXpath);
         app.getContactHelper().initDatEdit(editButtonXpath);
-        app.getContactHelper().fillAddNewNoteForm(newNoteData);
+        app.getContactHelper().fillContactForm(contactData, false);
         app.getContactHelper().submitDataEdit(editButtonOkXpath);
     }
 }

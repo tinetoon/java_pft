@@ -1,8 +1,11 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.testData.NewNoteData;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import ru.stqa.pft.addressbook.testData.ContactData;
 
 /**
  * Класс помощник по записям в БД
@@ -17,13 +20,27 @@ public class ContactHelper extends HelperBase {
     }
 
     // Метод заполнения полей новой записи в БД
-    public void fillAddNewNoteForm(NewNoteData newNoteData) {
+    public void fillAddNewNoteForm(ContactData contactData) {
 
-        wd.findElement(By.name(newNoteData.getFIRST_NAME_XPATH())).sendKeys(newNoteData.getFirstName());
-        wd.findElement(By.name(newNoteData.getEMAIL_XPATH())).sendKeys(newNoteData.getEmail());
-        wd.findElement(By.name(newNoteData.getLAST_NAME_XPATH())).sendKeys(newNoteData.getLastName());
-        wd.findElement(By.name(newNoteData.getADDRESS_XPATH())).sendKeys(newNoteData.getAddress());
-        wd.findElement(By.name(newNoteData.getMOBILE_PHONE_XPATH())).sendKeys(newNoteData.getMobileFone());
+        type(By.name(contactData.getFIRST_NAME_XPATH()), contactData.getFirstName());
+        type(By.name(contactData.getEMAIL_XPATH()), contactData.getEmail());
+        type(By.name(contactData.getLAST_NAME_XPATH()), contactData.getLastName());
+        type(By.name(contactData.getADDRESS_XPATH()), contactData.getAddress());
+        type(By.name(contactData.getMOBILE_PHONE_XPATH()), contactData.getMobileFone());
+    }
+
+    // Метод заполнения полей новой записи в БД
+    public void fillContactForm(ContactData contactData, boolean isCreationForm) {
+
+        type(By.name(contactData.getFIRST_NAME_XPATH()), contactData.getFirstName());
+        type(By.name(contactData.getLAST_NAME_XPATH()), contactData.getLastName());
+
+        // Проверка изменяется форма или создаётся
+        if (isCreationForm) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group"))); // При изменении формы поле выбора группы должно отсутствовать
+        }
     }
 
     // Метод сохранения данных в БД

@@ -23,9 +23,12 @@ public class GroupEditTest extends TestBase {
         String footerGroupXpath = "group_footer";
         String editSubmitButtonName = "update";
         String returnGroupPageXpath = "//a[.='group page']";
-        GroupData groupData = new GroupData("TestGroupEdit",
+        /*GroupData groupData = new GroupData("TestGroupEdit",
                                             "Test group header edit",
-                                            "Test group footer edit");
+                                            "Test group footer edit");*/
+        GroupData groupData = new GroupData("TestGroup",
+                                            "Test group header",
+                                            "Test group footer");
 
         app.getNavigationHelper().goToPage(groupPageXpath);
         app.getGroupHelper().selectGroup(checkBoxXpath);

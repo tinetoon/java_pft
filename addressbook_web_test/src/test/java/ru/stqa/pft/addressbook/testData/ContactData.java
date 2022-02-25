@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.testData;
 
-public class NewNoteData {
+public class ContactData {
     private final String FIRST_NAME_XPATH = "firstname";
     private final String LAST_NAME_XPATH = "lastname";
     private final String ADDRESS_XPATH = "address";
@@ -11,13 +11,20 @@ public class NewNoteData {
     private String address;
     private String email;
     private String mobileFone;
+    private String group;
 
-    public NewNoteData(String firstName, String lastName, String address, String email, String mobilePhone) {
+    public ContactData(String firstName, String lastName, String address, String email, String mobilePhone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.email = email;
         this.mobileFone = mobilePhone;
+    }
+
+    public ContactData(String firstName, String lastName, String group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.group = group;
     }
 
     public String getFIRST_NAME_XPATH() {
@@ -58,5 +65,9 @@ public class NewNoteData {
 
     public String getMobileFone() {
         return mobileFone;
+    }
+
+    public String getGroup() {
+        return group;
     }
 }
