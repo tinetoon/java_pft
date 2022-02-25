@@ -45,4 +45,12 @@ public class ContactHelper extends HelperBase {
             alertOk();
         }
     }
+
+    public void initDatEdit(String editButtonXpath) {
+        click(By.xpath(editButtonXpath));
+    }
+
+    public void submitDataEdit(String editButtonOkXpath) {
+        click(By.xpath(editButtonOkXpath));
+    }
 }
