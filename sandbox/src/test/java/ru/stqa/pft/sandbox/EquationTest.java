@@ -29,4 +29,22 @@ public class EquationTest {
         Equation e = new Equation(1, 5, 6);
         Assert.assertEquals(e.rootNumber(), 2);
     }
+
+    @Test(description = "Уравнение вырождается в линейное")
+    public void linearTest() {
+        Equation e = new Equation(0, 1, 1);
+        Assert.assertEquals(e.rootNumber(), 1);
+    }
+
+    @Test(description = "Уравнение вырождается в константу")
+    public void constantTest() {
+        Equation e = new Equation(0, 0, 1);
+        Assert.assertEquals(e.rootNumber(), 0);
+    }
+
+    @Test(description = "Уравнение вырождается в бесконечность")
+    public void infinityTest() {
+        Equation e = new Equation(0, 0, 0);
+        Assert.assertEquals(e.rootNumber(), -1);
+    }
 }

@@ -23,7 +23,55 @@ public class Equation {
 
         double d = b * b - 4 * a * c;
 
-        if (d > 0) {
+        /*if (a == 0) {
+            if (b == 0) {
+                if (c == 0) {
+                    System.out.println("INFO: a,b,c=0 - beskonechnoe kol-vo reshenij");
+                    n = -1;
+                } else {
+                    System.out.println("INFO: a,b=0, c=/=0 - net reshenij");
+                    n = 0;
+                }
+            } else {
+                System.out.println("INFO: a=0 - eto vjrozhdennoe linejnoe uravnenie");
+                n = 1;
+            }
+        } else {
+            if (d > 0) {
+                n = 2;
+            } else if (d == 0) {
+                n = 1;
+            } else {
+                n = 0;
+            }
+        }*/
+
+        if (a != 0) {
+            if (d > 0) {
+                n = 2;
+            } else if (d == 0) {
+                n = 1;
+            } else {
+                n = 0;
+            }
+
+        } else {
+            if (b != 0) {
+                System.out.println("INFO: a=0 - eto vjrozhdennoe linejnoe uravnenie");
+                n = 1;
+
+            } else if (c != 0) {
+                System.out.println("INFO: a,b=0, c=/=0 - net reshenij");
+                n = 0;
+
+            } else {
+                System.out.println("INFO: a,b,c=0 - beskonechnoe kol-vo reshenij");
+                n = -1;
+            }
+        }
+
+        // Вложенная форма if-else
+        /*if (d > 0) {
             n = 2;
         } else {
             if (d == 0) {
@@ -31,7 +79,17 @@ public class Equation {
             } else {
                 n = 0;
             }
-        }
+        }*/
+
+        // Свёрнутая форма if-else
+        /*if (d > 0) {
+            n = 2;
+        } else if (d == 0) {
+            n = 1;
+        } else {
+            n = 0;
+        }*/
+
     }
 
     public int rootNumber() {
