@@ -1,9 +1,13 @@
 package ru.stqa.pft.addressbook.testData;
 
 public class GroupData {
-    private final String nameGroup;
-    private final String headerGroup;
-    private final String footerGroup;
+    private String nameGroup;
+    private String headerGroup;
+    private String footerGroup;
+
+    public GroupData(String nameGroup) {
+        this.nameGroup = nameGroup;
+    }
 
     public GroupData(String nameGroup, String headerGroup, String footerGroup) {
         this.nameGroup = nameGroup;

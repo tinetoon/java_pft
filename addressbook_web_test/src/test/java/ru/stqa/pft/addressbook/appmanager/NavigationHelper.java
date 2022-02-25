@@ -21,14 +21,14 @@ public class NavigationHelper extends HelperBase {
     }
 
     // Метод перехода на страницу групп
-    public void goToGroupPage(String buttonXpath) {
+    public void goToGroupPage() {
 
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
             return;
         } else {
-            click(By.xpath(buttonXpath));
+            click(lc.getMENU_GROUP_PAGE());
         }
     }
 

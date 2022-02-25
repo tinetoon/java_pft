@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import ru.stqa.pft.addressbook.testData.Locators;
 
 /**
  * Базовый класс помощников
@@ -12,6 +13,7 @@ import org.openqa.selenium.WebDriver;
  */
 
 public class HelperBase {
+    protected static Locators lc = new Locators();
     protected WebDriver wd;
 
     public HelperBase(WebDriver driver) {

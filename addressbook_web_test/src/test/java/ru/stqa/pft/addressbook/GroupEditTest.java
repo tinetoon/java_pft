@@ -15,14 +15,7 @@ public class GroupEditTest extends TestBase {
     @Test
     public void testGroupEdit() {
 
-        String groupPageXpath = "//div[@id=\"nav\"]//a[.='groups']";
         String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
-        String editButtonName = "edit";
-        String nameGroupXpath = "group_name";
-        String headerGroupXpath = "group_header";
-        String footerGroupXpath = "group_footer";
-        String editSubmitButtonName = "update";
-        String returnGroupPageXpath = "//a[.='group page']";
         /*GroupData groupData = new GroupData("TestGroupEdit",
                                             "Test group header edit",
                                             "Test group footer edit");*/
@@ -30,11 +23,16 @@ public class GroupEditTest extends TestBase {
                                             "Test group header",
                                             "Test group footer");
 
-        app.getNavigationHelper().goToGroupPage(groupPageXpath);
+        app.getNavigationHelper().goToGroupPage();
+
+        if (! app.getGroupHelper().isGroupPresent(checkBoxXpath)) {
+            app.getGroupHelper().createGroup(new GroupData("TestGroup"));
+        }
+
         app.getGroupHelper().selectGroup(checkBoxXpath);
-        app.getGroupHelper().initGroupEdit(editButtonName);
-        app.getGroupHelper().fillGroupForm(nameGroupXpath, headerGroupXpath, footerGroupXpath, groupData);
-        app.getGroupHelper().submitGroupEdit(editSubmitButtonName);
-        app.getNavigationHelper().goToPage(returnGroupPageXpath);
+        app.getGroupHelper().initGroupEdit();
+        app.getGroupHelper().fillGroupForm(groupData);
+        app.getGroupHelper().submitGroupEdit();
+        app.getGroupHelper().returnToGroupPage();
     }
 }

@@ -17,15 +17,15 @@ public class GroupHelper extends HelperBase {
     }
 
     // Метод заполнения полей новой группы
-    public void fillGroupForm(String nameName, String headerName, String footerName, GroupData groupData) {
-        type(By.name(nameName), groupData.getNameGroup());
-        type(By.name(headerName), groupData.getHeaderGroup());
-        type(By.name(footerName), groupData.getFooterGroup());
+    public void fillGroupForm(GroupData groupData) {
+        type(lc.getFILL_GROUP_NAME(), groupData.getNameGroup());
+        type(lc.getFILL_GROUP_HEADER(), groupData.getHeaderGroup());
+        type(lc.getFILL_GROUP_FOOTER(), groupData.getFooterGroup());
     }
 
     // Метод создания новой группы
-    public void initGroupCreation(String buttonName) {
-        click(By.name(buttonName));
+    public void initGroupCreation() {
+        click(lc.getBUTTON_GROUP_NEW());
     }
 
     // Метод выделения группы
@@ -38,15 +38,31 @@ public class GroupHelper extends HelperBase {
         click(By.xpath(deleteButtonXpath));
     }
 
-    public void createNewGroup(String createButtonName) {
-        click(By.name(createButtonName));
+    public void clickButtonCreateNewGroup() {
+        click(lc.getBUTTON_GROUP_NEW_ENTER());
     }
 
-    public void initGroupEdit(String initButtonName) {
-        click(By.name(initButtonName));
+    public void initGroupEdit() {
+        click(lc.getBUTTON_GROUP_EDIT());
     }
 
-    public void submitGroupEdit(String editButtonName) {
-        click(By.name(editButtonName));
+    public void submitGroupEdit() {
+        click(lc.getBUTTON_GROUP_EDIT_ENTER());
+    }
+
+    // Метод возврата на страницу групп
+    public void returnToGroupPage() {
+        click(lc.getBUTTON_PAGE_RETURN_GROUP());
+    }
+
+    public void createGroup(GroupData testGroup) {
+        initGroupCreation();
+        fillGroupForm(testGroup);
+        clickButtonCreateNewGroup();
+        returnToGroupPage();
+    }
+
+    public boolean isGroupPresent(String checkBoxXpath) {
+        return isElementPresent(By.xpath(checkBoxXpath));
     }
 }

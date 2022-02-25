@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.TestBase;
+import ru.stqa.pft.addressbook.testData.GroupData;
 
 /**
  * Класс для тестирования удаления групп в БД addressbook
@@ -14,11 +15,15 @@ public class GroupDeletionTest extends TestBase {
     @Test
     public void groupDeletionTest() {
 
-        String groupPageXpath = "//div[@id=\"nav\"]//a[.='groups']";
         String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
         String deleteButtonXpath = "//*[@name=\"delete\"][1]";
 
-        app.getNavigationHelper().goToGroupPage(groupPageXpath);
+        app.getNavigationHelper().goToGroupPage();
+
+        if (! app.getGroupHelper().isGroupPresent(checkBoxXpath)) {
+            app.getGroupHelper().createGroup(new GroupData("TestGroup"));
+        }
+
         app.getGroupHelper().selectGroup(checkBoxXpath);
         app.getGroupHelper().deleteSelectedGroup(deleteButtonXpath);
     }
