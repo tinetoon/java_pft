@@ -16,9 +16,6 @@ public class DataEditTest extends TestBase {
     public void testDataEdit() {
 
         // Тестовые данные
-        String homePageXpath = "//a[.='home']";
-        String editButtonXpath = "//td[.='Ivanov']//..//img[@title=\"Edit\"]";
-        String editButtonOkXpath = "//input[@value=\"Update\"][1]";
         String firstName = "Boris Edit";
         String lastName = "Ivanov Edit";
         String address = "Moscow city";
@@ -27,9 +24,16 @@ public class DataEditTest extends TestBase {
 
         ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
 
-        app.getNavigationHelper().goToHomePage(homePageXpath);
-        app.getContactHelper().initDatEdit(editButtonXpath);
+        app.getNavigationHelper().goToHomePage();
+
+        if (! app.getContactHelper().isDataPresent()) {
+            app.getNavigationHelper().goToAddNewPage();
+            app.getContactHelper().createDataMethod(contactData);
+        }
+
+        app.getNavigationHelper().goToHomePage();
+        app.getContactHelper().initDatEdit();
         app.getContactHelper().fillContactForm(contactData, false);
-        app.getContactHelper().submitDataEdit(editButtonOkXpath);
+        app.getContactHelper().submitDataEdit();
     }
 }

@@ -14,12 +14,26 @@ public class Locators {
     private final By LC_1 = By.name("");
     private final By LC_2 = By.xpath("");
 
-    private final By MENU_GROUP_PAGE = By.xpath("//div[@id=\"nav\"]//a[.='groups']");
+    private final By MENU_PAGE_HOME = By.xpath("//a[.='home']");
+    private final By MENU_PAGE_ADD_NEW = By.xpath("//a[.='add new']");
+    private final By MENU_PAGE_GROUPS = By.xpath("//div[@id=\"nav\"]//a[.='groups']");
+
+    private final By BUTTON_AUTHORIZATION_ENTER = By.xpath("//input[@type=\"submit\"]");
+
+    private final By BUTTON_DATA_NEW_ENTER = By.xpath("//div[@id=\"content\"]//*[@type=\"submit\"][1]");
+    private final By BUTTON_DATA_DELETE_ENTER = By.xpath("//input[@value=\"Delete\"]");
+    private final By BUTTON_DATA_EDIT = By.xpath("//td[.='Ivanov']//..//img[@title=\"Edit\"]");
+    private final By BUTTON_DATA_EDIT_ENTER = By.xpath("//input[@value=\"Update\"][1]");
+
+    private final By CHECK_BOX_DATA = By.xpath("//input[@title=\"Select (Boris Ivanov)\"]");
 
     private final By BUTTON_GROUP_NEW = By.name("new");
     private final By BUTTON_GROUP_NEW_ENTER = By.name("submit");
     private final By BUTTON_GROUP_EDIT = By.name("edit");
     private final By BUTTON_GROUP_EDIT_ENTER = By.name("update");
+    private final By BUTTON_GROUP_DELETE_ENTER = By.xpath("//*[@name=\"delete\"][1]");
+
+    private final By CHECK_BOX_GROUP = By.xpath("//input[@title=\"Select (TestGroup)\"]");
 
     private final By BUTTON_PAGE_RETURN_GROUP = By.xpath("//a[.='group page']");
 
@@ -27,8 +41,42 @@ public class Locators {
     private final By FILL_GROUP_HEADER = By.name("group_header");
     private final By FILL_GROUP_FOOTER = By.name("group_footer");
 
-    public By getMENU_GROUP_PAGE() {
-        return MENU_GROUP_PAGE;
+    public By getMENU_PAGE_HOME() {
+        return MENU_PAGE_HOME;
+    }
+    public By getMENU_PAGE_ADD_NEW() {
+        return MENU_PAGE_ADD_NEW;
+    }
+    public By getMENU_PAGE_GROUPS() {
+        return MENU_PAGE_GROUPS;
+    }
+
+    public By getBUTTON_AUTHORIZATION_ENTER() {
+        return BUTTON_AUTHORIZATION_ENTER;
+    }
+
+    public By getBUTTON_DATA_NEW_ENTER() {
+        return BUTTON_DATA_NEW_ENTER;
+    }
+    public By getBUTTON_DATA_DELETE_ENTER() {
+        return BUTTON_DATA_DELETE_ENTER;
+    }
+    public By getBUTTON_DATA_EDIT() {
+        return BUTTON_DATA_EDIT;
+    }
+    public By getBUTTON_DATA_EDIT_ENTER() {
+        return BUTTON_DATA_EDIT_ENTER;
+    }
+    public By getBUTTON_GROUP_DELETE_ENTER() {
+        return BUTTON_GROUP_DELETE_ENTER;
+    }
+
+    public By getCHECK_BOX_GROUP() {
+        return CHECK_BOX_GROUP;
+    }
+
+    public By getCHECK_BOX_DATA() {
+        return CHECK_BOX_DATA;
     }
 
     public By getBUTTON_GROUP_NEW() {

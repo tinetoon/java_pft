@@ -20,6 +20,25 @@ public class NavigationHelper extends HelperBase {
             click(By.xpath(buttonXpath));
     }
 
+    // Метод перехода на главную страницу
+    public void goToHomePage() {
+
+        if (! isElementPresent(By.id("maintable"))) {
+            click(lc.getMENU_PAGE_HOME());
+        }
+    }
+
+    // Метод перехода на страницу создания новой записи в БД
+    public void goToAddNewPage() {
+
+        if (isElementPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")) {
+            return;
+        } else {
+            click(lc.getMENU_PAGE_ADD_NEW());
+        }
+    }
+
     // Метод перехода на страницу групп
     public void goToGroupPage() {
 
@@ -28,15 +47,7 @@ public class NavigationHelper extends HelperBase {
                 && isElementPresent(By.name("new"))) {
             return;
         } else {
-            click(lc.getMENU_GROUP_PAGE());
-        }
-    }
-
-    // Метод перехода на главную страницу
-    public void goToHomePage(String buttonXpath) {
-
-        if (! isElementPresent(By.id("maintable"))) {
-            click(By.xpath(buttonXpath));
+            click(lc.getMENU_PAGE_GROUPS());
         }
     }
 }

@@ -15,17 +15,14 @@ public class GroupDeletionTest extends TestBase {
     @Test
     public void groupDeletionTest() {
 
-        String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
-        String deleteButtonXpath = "//*[@name=\"delete\"][1]";
-
         app.getNavigationHelper().goToGroupPage();
 
-        if (! app.getGroupHelper().isGroupPresent(checkBoxXpath)) {
-            app.getGroupHelper().createGroup(new GroupData("TestGroup"));
+        if (! app.getGroupHelper().isGroupPresent()) {
+            app.getGroupHelper().groupCreateMethod(new GroupData("TestGroup"));
         }
 
-        app.getGroupHelper().selectGroup(checkBoxXpath);
-        app.getGroupHelper().deleteSelectedGroup(deleteButtonXpath);
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().deleteSelectedGroup();
     }
 
 }

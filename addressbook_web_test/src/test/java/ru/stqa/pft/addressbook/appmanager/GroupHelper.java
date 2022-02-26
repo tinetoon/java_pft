@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.testData.GroupData;
 
@@ -23,23 +22,12 @@ public class GroupHelper extends HelperBase {
         type(lc.getFILL_GROUP_FOOTER(), groupData.getFooterGroup());
     }
 
-    // Метод создания новой группы
-    public void initGroupCreation() {
-        click(lc.getBUTTON_GROUP_NEW());
+    public void selectGroup() {
+        click(lc.getCHECK_BOX_GROUP());
     }
 
-    // Метод выделения группы
-    public void selectGroup(String checkBoxXpath) {
-        click(By.xpath(checkBoxXpath));
-    }
-
-    // Метод удаления выделенной группы
-    public void deleteSelectedGroup(String deleteButtonXpath) {
-        click(By.xpath(deleteButtonXpath));
-    }
-
-    public void clickButtonCreateNewGroup() {
-        click(lc.getBUTTON_GROUP_NEW_ENTER());
+    public void deleteSelectedGroup() {
+        click(lc.getBUTTON_GROUP_DELETE_ENTER());
     }
 
     public void initGroupEdit() {
@@ -50,19 +38,26 @@ public class GroupHelper extends HelperBase {
         click(lc.getBUTTON_GROUP_EDIT_ENTER());
     }
 
-    // Метод возврата на страницу групп
     public void returnToGroupPage() {
         click(lc.getBUTTON_PAGE_RETURN_GROUP());
     }
 
-    public void createGroup(GroupData testGroup) {
-        initGroupCreation();
+    public void initGroupCreate() {
+        click(lc.getBUTTON_GROUP_NEW());
+    }
+
+    public void submitGroupCreate() {
+        click(lc.getBUTTON_GROUP_NEW_ENTER());
+    }
+
+    public void groupCreateMethod(GroupData testGroup) {
+        initGroupCreate();
         fillGroupForm(testGroup);
-        clickButtonCreateNewGroup();
+        submitGroupCreate();
         returnToGroupPage();
     }
 
-    public boolean isGroupPresent(String checkBoxXpath) {
-        return isElementPresent(By.xpath(checkBoxXpath));
+    public boolean isGroupPresent() {
+        return isElementPresent(lc.getCHECK_BOX_GROUP());
     }
 }

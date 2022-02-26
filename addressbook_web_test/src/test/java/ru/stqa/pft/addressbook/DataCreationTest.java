@@ -16,8 +16,6 @@ public class DataCreationTest extends TestBase {
     public void testDataCreation() {
 
         // Тестовые данные
-        String addNewPageXpath = "//a[.='add new']";
-        String buttonXpath = "//div[@id=\"content\"]//*[@type=\"submit\"][1]";
         String firstName = "Boris";
         String lastName = "Ivanov";
         String address = "Moscow";
@@ -26,26 +24,24 @@ public class DataCreationTest extends TestBase {
 
         ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
 
-        app.getNavigationHelper().goToHomePage(addNewPageXpath);
+        app.getNavigationHelper().goToAddNewPage();
         app.getContactHelper().fillAddNewNoteForm(contactData);
-        app.getContactHelper().createNewData(buttonXpath);
+        app.getContactHelper().createNewData();
     }
 
     @Test
     public void testDataCreationWithGroup() {
 
         // Тестовые данные
-        String addNewPageXpath = "//a[.='add new']";
-        String buttonXpath = "//div[@id=\"content\"]//*[@type=\"submit\"][1]";
         String firstName = "Boris";
         String lastName = "Ivanov";
         String group = "TestGroup";
 
         ContactData contactData = new ContactData(firstName, lastName, group);
 
-        app.getNavigationHelper().goToHomePage(addNewPageXpath);
+        app.getNavigationHelper().goToAddNewPage();
         app.getContactHelper().fillContactForm(contactData, true);
-        app.getContactHelper().createNewData(buttonXpath);
+        app.getContactHelper().createNewData();
     }
 
 }

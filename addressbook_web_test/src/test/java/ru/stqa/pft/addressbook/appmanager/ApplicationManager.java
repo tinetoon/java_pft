@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerDriverLogLevel;
-import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -56,8 +54,7 @@ public class ApplicationManager {
 
         new WebDriverWait(driver, Duration.ofSeconds(15));
 
-//        driver.get("http://localhost/addressbook/"); // !!! Вынести "магические переменные"
-        driver.get("http://localhost/addressbook/group.php");
+        driver.get("http://localhost/addressbook/group.php"); // !!! Вынести "магические переменные"
 
         groupHelper = new GroupHelper(driver);
         contactHelper = new ContactHelper(driver);

@@ -19,11 +19,9 @@ public class SessionHelper extends HelperBase {
     // Метод авторизации в БД
     public void authorization(String userName, String password) {
 
-        String mainPageXpath = "//input[@type=\"submit\"]";
-
         wd.manage().window().setSize(new Dimension(1936, 1056));
         type(By.name("user"), userName);
         type(By.name("pass"), password);
-        click(By.xpath(mainPageXpath));
+        click(lc.getBUTTON_AUTHORIZATION_ENTER());
     }
 }

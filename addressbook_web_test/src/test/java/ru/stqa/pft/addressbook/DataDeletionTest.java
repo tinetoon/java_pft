@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.TestBase;
+import ru.stqa.pft.addressbook.testData.ContactData;
 
 /**
  * Класс для тестирования удаления записи в БД addressbook
@@ -15,13 +16,24 @@ public class DataDeletionTest extends TestBase {
     public void testDataDeletion() {
 
         // Тестовые данные
-        String homePageXpath = "//a[.='home']";
-        String checkBoxXpath = "//input[@title=\"Select (Boris Ivanov)\"]";
-        String deleteButtonXpath = "//input[@value=\"Delete\"]";
+        String firstName = "Boris";
+        String lastName = "Ivanov";
+        String address = "Moscow";
+        String email = "email@mail.ts";
+        String mobileFone = "+79991231212";
 
-        app.getNavigationHelper().goToHomePage(homePageXpath);
-        app.getContactHelper().selectData(checkBoxXpath);
-        app.getContactHelper().deleteSelectedData(deleteButtonXpath);
+        ContactData contactData = new ContactData(firstName, lastName, address, email, mobileFone);
+
+        app.getNavigationHelper().goToHomePage();
+
+        if (! app.getContactHelper().isDataPresent()) {
+            app.getNavigationHelper().goToAddNewPage();
+            app.getContactHelper().createDataMethod(contactData);
+        }
+
+        app.getNavigationHelper().goToHomePage();
+        app.getContactHelper().selectData();
+        app.getContactHelper().deleteSelectedData();
         app.getContactHelper().confirmDeletion();
     }
 }

@@ -15,7 +15,6 @@ public class GroupEditTest extends TestBase {
     @Test
     public void testGroupEdit() {
 
-        String checkBoxXpath = "//input[@title=\"Select (TestGroup)\"]";
         /*GroupData groupData = new GroupData("TestGroupEdit",
                                             "Test group header edit",
                                             "Test group footer edit");*/
@@ -25,11 +24,11 @@ public class GroupEditTest extends TestBase {
 
         app.getNavigationHelper().goToGroupPage();
 
-        if (! app.getGroupHelper().isGroupPresent(checkBoxXpath)) {
-            app.getGroupHelper().createGroup(new GroupData("TestGroup"));
+        if (! app.getGroupHelper().isGroupPresent()) {
+            app.getGroupHelper().groupCreateMethod(new GroupData("TestGroup"));
         }
 
-        app.getGroupHelper().selectGroup(checkBoxXpath);
+        app.getGroupHelper().selectGroup();
         app.getGroupHelper().initGroupEdit();
         app.getGroupHelper().fillGroupForm(groupData);
         app.getGroupHelper().submitGroupEdit();

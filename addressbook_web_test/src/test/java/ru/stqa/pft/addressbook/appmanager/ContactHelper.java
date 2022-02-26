@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -44,16 +43,16 @@ public class ContactHelper extends HelperBase {
     }
 
     // Метод сохранения данных в БД
-    public void createNewData(String createButtonXpath) {
-        click(By.xpath(createButtonXpath));
+    public void createNewData() {
+        click(lc.getBUTTON_DATA_NEW_ENTER());
     }
 
-    public void selectData(String checkBoxXpath) {
-        click(By.xpath(checkBoxXpath));
+    public void selectData() {
+        click(lc.getCHECK_BOX_DATA());
     }
 
-    public void deleteSelectedData(String deleteButtonXpath) {
-        click(By.xpath(deleteButtonXpath));
+    public void deleteSelectedData() {
+        click(lc.getBUTTON_DATA_DELETE_ENTER());
     }
 
     public void confirmDeletion() {
@@ -63,11 +62,20 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void initDatEdit(String editButtonXpath) {
-        click(By.xpath(editButtonXpath));
+    public void initDatEdit() {
+        click(lc.getBUTTON_DATA_EDIT());
     }
 
-    public void submitDataEdit(String editButtonOkXpath) {
-        click(By.xpath(editButtonOkXpath));
+    public void submitDataEdit() {
+        click(lc.getBUTTON_DATA_EDIT_ENTER());
+    }
+
+    public void createDataMethod(ContactData testData) {
+        fillAddNewNoteForm(testData);
+        createNewData();
+    }
+
+    public boolean isDataPresent() {
+        return isElementPresent(lc.getCHECK_BOX_DATA());
     }
 }
