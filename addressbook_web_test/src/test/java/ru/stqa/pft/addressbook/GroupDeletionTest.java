@@ -18,16 +18,18 @@ public class GroupDeletionTest extends TestBase {
 
         app.getNavigationHelper().goToGroupPage();
 
+        if (! app.getGroupHelper().isGroupPresent()) {
+            app.getGroupHelper().groupCreateMethod(new GroupData("TestGroup"));
+        }
+
+        app.getNavigationHelper().goToGroupPage();
+
         // Вычисляем количество групп до добавления
         int before = app
                 .getGroupHelper()
                 .getGroupCount();
 
-        if (! app.getGroupHelper().isGroupPresent()) {
-            app.getGroupHelper().groupCreateMethod(new GroupData("TestGroup"));
-        }
-
-        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().selectGroup(before - 2); // Выбираем предпоследнюю группу с индексом (before - 2)
         app.getGroupHelper().deleteSelectedGroup();
         app.getNavigationHelper().goToGroupPage();
 

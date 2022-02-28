@@ -22,8 +22,11 @@ public class GroupHelper extends HelperBase {
         type(lc.getFILL_GROUP_FOOTER(), groupData.getFooterGroup());
     }
 
-    public void selectGroup() {
-        click(lc.getCHECK_BOX_GROUP());
+    public void selectGroup(int index) {
+
+        wd.findElements(lc.getCHECK_BOX_COUNT_GROUP()).get(index).click();
+
+//        click(lc.getCHECK_BOX_GROUP());
     }
 
     public void deleteSelectedGroup() {
