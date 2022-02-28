@@ -3,6 +3,7 @@
 
 /build/
 /sandbox/build/
+/sandbox/out/
 
 # Ignore Gradle GUI config
 gradle-app.setting
