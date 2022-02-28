@@ -17,6 +17,6 @@ dependencies {
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.3'
 
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-//    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 
 }
