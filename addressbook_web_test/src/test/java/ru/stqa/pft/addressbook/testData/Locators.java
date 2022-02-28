@@ -38,6 +38,9 @@ public class Locators {
 
     private final By CHECK_BOX_GROUP = By.xpath("//input[@title=\"Select (TestGroup)\"]");
     private final By CHECK_BOX_COUNT_GROUP = By.name("selected[]");
+    private final By CHECK_BOX_IN_SPAN = By.tagName("input");
+
+    private final By SPAN_GROUP = By.cssSelector("span.group");
 
     private final By BUTTON_PAGE_RETURN_GROUP = By.xpath("//a[.='group page']");
 

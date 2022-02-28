@@ -1,7 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.testData.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс помощник по группам БД
@@ -68,5 +73,24 @@ public class GroupHelper extends HelperBase {
     public int getGroupCount() {
 
         return wd.findElements(lc.getCHECK_BOX_COUNT_GROUP()).size();
+    }
+
+    public List<GroupData> getGroupList() {
+
+        List<GroupData> groupDataList = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(lc.getSPAN_GROUP());
+
+        for (WebElement element: elements) {
+
+            String name = element.getText();
+            String idString = element
+                    .findElement(lc.getCHECK_BOX_IN_SPAN())
+                    .getAttribute("value");
+            int id = Integer.valueOf(idString);
+            GroupData group = new GroupData(id, name, null, null);
+            groupDataList.add(group);
+        }
+
+        return groupDataList;
     }
 }
