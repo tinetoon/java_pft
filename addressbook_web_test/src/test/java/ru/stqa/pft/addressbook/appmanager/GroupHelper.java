@@ -60,4 +60,10 @@ public class GroupHelper extends HelperBase {
     public boolean isGroupPresent() {
         return isElementPresent(lc.getCHECK_BOX_GROUP());
     }
+
+    // Счётчик групп
+    public int getGroupCount() {
+
+        return wd.findElements(lc.getCHECK_BOX_COUNT_GROUP()).size();
+    }
 }

@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.testData;
 
+import lombok.Data;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
 /**
@@ -8,8 +10,8 @@ import org.openqa.selenium.By;
  * Дата создания - 25.02.2022
  */
 
+@Getter
 public class Locators {
-
 
     private final By LC_1 = By.name("");
     private final By LC_2 = By.xpath("");
@@ -26,6 +28,7 @@ public class Locators {
     private final By BUTTON_DATA_EDIT_ENTER = By.xpath("//input[@value=\"Update\"][1]");
 
     private final By CHECK_BOX_DATA = By.xpath("//input[@title=\"Select (Boris Ivanov)\"]");
+    private final By CHECK_BOX_COUNT_DATA = By.name("selected[]");
 
     private final By BUTTON_GROUP_NEW = By.name("new");
     private final By BUTTON_GROUP_NEW_ENTER = By.name("submit");
@@ -34,6 +37,7 @@ public class Locators {
     private final By BUTTON_GROUP_DELETE_ENTER = By.xpath("//*[@name=\"delete\"][1]");
 
     private final By CHECK_BOX_GROUP = By.xpath("//input[@title=\"Select (TestGroup)\"]");
+    private final By CHECK_BOX_COUNT_GROUP = By.name("selected[]");
 
     private final By BUTTON_PAGE_RETURN_GROUP = By.xpath("//a[.='group page']");
 
@@ -41,7 +45,7 @@ public class Locators {
     private final By FILL_GROUP_HEADER = By.name("group_header");
     private final By FILL_GROUP_FOOTER = By.name("group_footer");
 
-    public By getMENU_PAGE_HOME() {
+    /*public By getMENU_PAGE_HOME() {
         return MENU_PAGE_HOME;
     }
     public By getMENU_PAGE_ADD_NEW() {
@@ -78,6 +82,9 @@ public class Locators {
     public By getCHECK_BOX_DATA() {
         return CHECK_BOX_DATA;
     }
+    public By getCHECK_BOX_COUNT_GROUP() {
+        return CHECK_BOX_COUNT_GROUP;
+    }
 
     public By getBUTTON_GROUP_NEW() {
         return BUTTON_GROUP_NEW;
@@ -103,5 +110,5 @@ public class Locators {
     }
     public By getFILL_GROUP_FOOTER() {
         return FILL_GROUP_FOOTER;
-    }
+    }*/
 }
