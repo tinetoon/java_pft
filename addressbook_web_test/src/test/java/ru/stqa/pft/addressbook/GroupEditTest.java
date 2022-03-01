@@ -113,7 +113,6 @@ public class GroupEditTest extends TestBase {
     @AfterTest
     public void groupDeletion() {
 
-        app.init();
         app.getNavigationHelper().goToGroupPage();
 
         // Создаём лист групп
@@ -126,7 +125,5 @@ public class GroupEditTest extends TestBase {
         List<GroupData> after = app.getGroupHelper().getGroupList();
 
         Assert.assertEquals(after.size(), (before.size() - 1));
-
-        app.stop();
     }
 }
