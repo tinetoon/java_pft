@@ -73,9 +73,9 @@ public class GroupEditTest extends TestBase {
 
         app.getNavigationHelper().goToGroupPage();
 
-        // Создаём лист групп
+        // Создаём лист групп и ID
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        int id = before.get(before.size() - 2).getId();
+        int id = before.get(before.size() - 2).getId(); // !!! Вынести в тестовые данные
 
         app.getGroupHelper().selectGroup(before.size() - 2);
         app.getGroupHelper().initGroupEdit();
@@ -94,8 +94,10 @@ public class GroupEditTest extends TestBase {
 
         Assert.assertEquals(after.size(), before.size());
 
-        // Сравниваем два множества групп
+        // Удаляем из списка before отредактированную группу
         before.remove(before.size() - 2);
+
+        // Добавляем группу с параметрами редактирования
         before.add(new GroupData(id, "TestGroup"));
 //        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after)); // Вынесено в новое сравнение отсортированных списков
 
@@ -104,6 +106,7 @@ public class GroupEditTest extends TestBase {
         before.sort(byId);
         after.sort(byId);
 
+        // Сравниваем два множества групп
         Assert.assertEquals(before, after);
     }
 

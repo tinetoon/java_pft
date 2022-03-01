@@ -1,8 +1,13 @@
 package ru.stqa.pft.addressbook;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.TestBase;
 import ru.stqa.pft.addressbook.testData.ContactData;
+import ru.stqa.pft.addressbook.testData.GroupData;
+
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Класс для тестирования удаления записи в БД addressbook
@@ -32,8 +37,29 @@ public class DataDeletionTest extends TestBase {
         }
 
         app.getNavigationHelper().goToHomePage();
-        app.getContactHelper().selectData();
+
+        // Создаём лист записей в БД
+        List<ContactData> before = app.getContactHelper().getDataList();
+
+        app.getContactHelper().selectData(before.size() - 2);
         app.getContactHelper().deleteSelectedData();
         app.getContactHelper().confirmDeletion();
+        app.getNavigationHelper().goToHomePage();
+
+        List<ContactData> after = app.getContactHelper().getDataList();
+
+        // Проверка количества записей БД до и после удаления
+        Assert.assertEquals(after.size(), (before.size() - 1));
+
+        // Удаляем из списка before удалённую запись
+        before.remove(before.size() - 2);
+
+        // Отсортируем записи БД
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getInputId(), c2.getInputId());
+        before.sort(byId);
+        after.sort(byId);
+
+        // Сравниваем списки групп
+        Assert.assertEquals(before, after);
     }
 }

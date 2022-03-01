@@ -2,9 +2,13 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.testData.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс помощник по записям в БД
@@ -21,18 +25,18 @@ public class ContactHelper extends HelperBase {
     // Метод заполнения полей новой записи в БД
     public void fillAddNewNoteForm(ContactData contactData) {
 
-        type(By.name(contactData.getFIRST_NAME_XPATH()), contactData.getFirstName());
-        type(By.name(contactData.getEMAIL_XPATH()), contactData.getEmail());
-        type(By.name(contactData.getLAST_NAME_XPATH()), contactData.getLastName());
-        type(By.name(contactData.getADDRESS_XPATH()), contactData.getAddress());
-        type(By.name(contactData.getMOBILE_PHONE_XPATH()), contactData.getMobileFone());
+        type(lc.getFILL_DATA_FIRST_NAME(), contactData.getFirstName());
+        type(lc.getFILL_DATA_LAST_NAME(), contactData.getLastName());
+        type(lc.getFILL_DATA_EMAIL(), contactData.getEmail());
+        type(lc.getFILL_DATA_ADDRESS(), contactData.getAddress());
+        type(lc.getFILL_DATA_PHONE(), contactData.getMobileFone());
     }
 
     // Метод заполнения полей новой записи в БД
     public void fillContactForm(ContactData contactData, boolean isCreationForm) {
 
-        type(By.name(contactData.getFIRST_NAME_XPATH()), contactData.getFirstName());
-        type(By.name(contactData.getLAST_NAME_XPATH()), contactData.getLastName());
+        type(lc.getFILL_DATA_FIRST_NAME(), contactData.getFirstName());
+        type(lc.getFILL_DATA_LAST_NAME(), contactData.getLastName());
 
         // Проверка изменяется форма или создаётся
         if (isCreationForm) {
@@ -47,8 +51,12 @@ public class ContactHelper extends HelperBase {
         click(lc.getBUTTON_DATA_NEW_ENTER());
     }
 
-    public void selectData() {
-        click(lc.getCHECK_BOX_DATA());
+    public void selectData(int index) {
+
+        wd.findElements(lc.getCHECK_BOX_COUNT_DATA())
+                .get(index)
+                .click();
+//        click(lc.getCHECK_BOX_DATA());
     }
 
     public void deleteSelectedData() {
@@ -62,8 +70,13 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void initDatEdit() {
-        click(lc.getBUTTON_DATA_EDIT());
+    public void initDatEdit(int index) {
+
+        wd.findElements(lc.getSPAN_DATA())
+                .get(index)
+                .findElement(By.cssSelector("img[title='Edit']"))
+                .click();
+//        click(lc.getBUTTON_DATA_EDIT());
     }
 
     public void submitDataEdit() {
@@ -77,5 +90,42 @@ public class ContactHelper extends HelperBase {
 
     public boolean isDataPresent() {
         return isElementPresent(lc.getCHECK_BOX_DATA());
+    }
+
+    public List<ContactData> getDataList() {
+
+        List<ContactData> contactDataList = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(lc.getSPAN_DATA());
+
+        for (WebElement element: elements) {
+
+//            String lastName = elements.get(0).findElements(By.tagName("td")).get(1).getText();
+//            String lastName = elements.get(1).findElements(By.tagName("td")).get(1).getText();
+            String lastName = element
+                    .findElements(By.tagName("td"))
+                    .get(1)
+                    .getText();
+            String firstName = element
+                    .findElements(By.tagName("td"))
+                    .get(2)
+                    .getText();
+            String address = element
+                    .findElements(By.tagName("td"))
+                    .get(3)
+                    .getText();
+            String email = element
+                    .findElements(By.tagName("td"))
+                    .get(4)
+                    .getText();
+            String idString = element
+                    .findElement(lc.getCHECK_BOX_IN_SPAN())
+                    .getAttribute("value");
+
+            ContactData contact = new ContactData(Integer.valueOf(idString), firstName, lastName);
+            contactDataList.add(contact);
+
+        }
+
+        return contactDataList;
     }
 }

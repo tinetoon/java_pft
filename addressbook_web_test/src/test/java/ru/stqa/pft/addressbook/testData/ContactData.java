@@ -1,11 +1,10 @@
 package ru.stqa.pft.addressbook.testData;
 
+import java.util.Objects;
+
 public class ContactData {
-    private final String FIRST_NAME_XPATH = "firstname";
-    private final String LAST_NAME_XPATH = "lastname";
-    private final String ADDRESS_XPATH = "address";
-    private final String EMAIL_XPATH = "email";
-    private final String MOBILE_PHONE_XPATH = "mobile";
+
+    private int inputId;
     private String firstName;
     private String lastName;
     private String address;
@@ -14,6 +13,7 @@ public class ContactData {
     private String group;
 
     public ContactData(String firstName, String lastName, String address, String email, String mobilePhone) {
+        this.inputId = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -22,29 +22,27 @@ public class ContactData {
     }
 
     public ContactData(String firstName, String lastName, String group) {
+        this.inputId = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.group = group;
+        this.address = null;
+        this.email = null;
+        this.mobileFone = null;
     }
 
-    public String getFIRST_NAME_XPATH() {
-        return FIRST_NAME_XPATH;
+    public ContactData(int inputId, String firstName, String lastName) {
+        this.inputId = inputId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.group = null;
+        this.address = null;
+        this.email = null;
+        this.mobileFone = null;
     }
 
-    public String getLAST_NAME_XPATH() {
-        return LAST_NAME_XPATH;
-    }
-
-    public String getADDRESS_XPATH() {
-        return ADDRESS_XPATH;
-    }
-
-    public String getEMAIL_XPATH() {
-        return EMAIL_XPATH;
-    }
-
-    public String getMOBILE_PHONE_XPATH() {
-        return MOBILE_PHONE_XPATH;
+    public int getInputId() {
+        return inputId;
     }
 
     public String getFirstName() {
@@ -69,5 +67,31 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "inputId=" + inputId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileFone='" + mobileFone + '\'' +
+                ", group='" + group + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return inputId == that.inputId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inputId, firstName, lastName);
     }
 }
