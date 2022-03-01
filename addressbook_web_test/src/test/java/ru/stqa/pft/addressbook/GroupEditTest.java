@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.TestBase;
 import ru.stqa.pft.addressbook.testData.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -96,7 +97,14 @@ public class GroupEditTest extends TestBase {
         // Сравниваем два множества групп
         before.remove(before.size() - 2);
         before.add(new GroupData(id, "TestGroup"));
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+//        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after)); // Вынесено в новое сравнение отсортированных списков
+
+        // Отсортируем список групп
+        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
+
+        Assert.assertEquals(before, after);
     }
 
     @AfterTest
